@@ -85,6 +85,11 @@ module.exports = {
                 return;
             }
 
+            if( activeGame.gameLength > 300){
+                await interaction.editReply({content: 'Bahis süresi doldu. Maç başladıktan 5 dk sonra bahis kabul edilemiyor.'});
+                return;
+            }
+
             const blueTeam = activeGame.participants.filter(p=> p.teamId === 100).map(p => {
                 const champName = championData[p.championId] || "Unknown Champion";
                 return `${p.riotId} - ${champName}`;

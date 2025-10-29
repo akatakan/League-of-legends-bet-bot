@@ -10,6 +10,11 @@ const addUser = (userId, username) => {
     return stmt.run(userId, username);
 }
 
+const setUserBalance = (userId, amount) => {
+    const stmt = db.prepare('UPDATE users SET balance = ? WHERE user_id = ?');
+    return stmt.run(amount, userId);
+}
+
 const addUserBalance = (userId, amount) => {
     const stmt = db.prepare('UPDATE users SET balance = balance + ? WHERE user_id = ?');
     return stmt.run(amount, userId);
@@ -54,5 +59,6 @@ module.exports = {
     getUserBalance,
     getTopUsers,
     canClaimDaily,
-    claimDailyBalance
+    claimDailyBalance,
+    setUserBalance
 };

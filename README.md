@@ -1,25 +1,22 @@
-Japanese Garden LoL Betting Bot 🎮💰
-Motivation
-Bu proje, Discord.js v14 tabanlı bir League of Legends bahis botudur. Kullanıcılar, LoL maçları üzerinden bahis yapabilir, liderlik tablosunu görebilir ve oyun sonuçlarına göre ödüller kazanabilirler. Riot API üzerinden canlı maç verileri alınır ve SQLite ile kullanıcı/bahis verileri saklanır.
+# Japanese Garden LoL Betting Bot 🎮💰
 
-Quick Start
-🚀 Özellikler
-Slash Commands desteği (/lolpoll, /leaderboard, /ping)
+## Motivation
 
-Riot API entegrasyonu ile canlı maç takibi
+Bu proje, **Discord.js v14** tabanlı bir **League of Legends bahis botudur**. Kullanıcılar, LoL maçları üzerinden bahis yapabilir, liderlik tablosunu görebilir ve oyun sonuçlarına göre ödüller kazanabilirler. Riot API üzerinden canlı maç verileri alınır ve SQLite ile kullanıcı/bahis verileri saklanır.
 
-Bahis sistemi: kullanıcılar maç sonuçlarına göre Win/Lose tahmini yapar
+## Quick Start
 
-Balance sistemi: her kullanıcıya başlangıçta 1000 JP verilir
+### 🚀 Özellikler
+- **Slash Commands** desteği (`/lolpoll`, `/leaderboard`, `/ping`)
+- Riot API entegrasyonu ile **canlı maç takibi**
+- Bahis sistemi: kullanıcılar maç sonuçlarına göre **Win/Lose tahmini** yapar
+- **Balance sistemi**: her kullanıcıya başlangıçta 1000 JP verilir
+- Liderlik tablosu: `/leaderboard` komutu ile en zengin 10 kullanıcı
+- SQLite (better-sqlite3) altyapısı ile **kalıcı veri saklama**
+- Dinamik **butonlar + modal etkileşimleri** ile kullanıcı dostu arayüz
 
-Liderlik tablosu: /leaderboard komutu ile en zengin 10 kullanıcı
-
-SQLite (better-sqlite3) altyapısı ile kalıcı veri saklama
-
-Dinamik butonlar + modal etkileşimleri ile kullanıcı dostu arayüz
-
-📂 Proje Yapısı
-text
+### 📂 Proje Yapısı
+```
 .
 ├── commands/         # Slash command klasörü
 │   └── utility/      # Leaderboard, lolpoll, ping gibi komutlar
@@ -41,68 +38,66 @@ text
 ├── package.json
 ├── eslint.config.js
 └── README.md
-⚙️ Kurulum
-Repoyu klonlayın:
+```
 
-text
+### ⚙️ Kurulum
+
+1. Repoyu klonlayın:
+```
 git clone [https://github.com/akatakan/Discord-Bot.git](https://github.com/akatakan/Discord-Bot.git)
 cd Discord-Bot
-Bağımlılıkları yükleyin:
+```
 
-text
+2. Bağımlılıkları yükleyin:
+```
 yarn install
-.env dosyası oluşturun ve gerekli bilgileri ekleyin:
+```
 
-text
+3. `.env` dosyası oluşturun ve gerekli bilgileri ekleyin:
+```
 TOKEN=discord_bot_token
 CLIENT_ID=discord_client_id
 GUILD_ID=discord_server_id
 RIOT_API_KEY=riot_api_key
-Slash komutlarını dağıtın:
+```
 
-text
+4. Slash komutlarını dağıtın:
+```
 node deploy-commands.js
-Botu başlatın:
+```
 
-text
+5. Botu başlatın:
+```
 node index.js
-🛠 Kullanılan Teknolojiler
-discord.js v14 – Discord bot framework
+```
 
-better-sqlite3 – SQLite database yönetimi
+### 🛠 Kullanılan Teknolojiler
+- [discord.js v14](https://discord.js.org/) – Discord bot framework
+- [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) – SQLite database yönetimi
+- [axios](https://axios-http.com/) – Riot API istekleri
+- [dotenv](https://github.com/motdotla/dotenv) – Ortam değişkenleri
 
-axios – Riot API istekleri
+## Usage
 
-dotenv – Ortam değişkenleri
+### 🎮 Komutlar
 
-Usage
-🎮 Komutlar
-/ping → Bot yanıt veriyor mu test eder
+- `/ping` → Bot yanıt veriyor mu test eder
+- `/leaderboard` → En zengin 10 kullanıcıyı listeler
+- `/lolpoll region:<TR/EUW/NA...> summonername:<İsim#Tag> betamount:<Miktar>`
+   - Oyuncu aktif maçtaysa, bahis penceresi açar
+   - Kullanıcılar **Win/Lose** tahmini yapabilir
 
-/leaderboard → En zengin 10 kullanıcıyı listeler
+### 📊 Bahis Sistemi Akışı
+1. `/lolpoll` → Maç bulunup embed paylaşılır
+2. Kullanıcılar **bahis butonuna** tıklar → Modal açılır
+3. Kullanıcı miktar ve tahmini girer
+4. Maç bitince Riot API’den sonuç alınır → kazananlara ödül verilir
 
-/lolpoll region:<TR/EUW/NA...> summonername:<İsim#Tag> betamount:<Miktar>
+### 📝 Notlar
+- Varsayılan bakiye: **1000 JP**
+- Bahis sonrası kullanıcı bakiyesi anında güncellenir
+- Bahis süresi: maç başladıktan sonra **5 dakika** ile sınırlıdır
 
-Oyuncu aktif maçtaysa, bahis penceresi açar
+## Contributing
 
-Kullanıcılar Win/Lose tahmini yapabilir
-
-📊 Bahis Sistemi Akışı
-/lolpoll → Maç bulunup embed paylaşılır
-
-Kullanıcılar bahis butonuna tıklar → Modal açılır
-
-Kullanıcı miktar ve tahmini girer
-
-Maç bitince Riot API’den sonuç alınır → kazananlara ödül verilir
-
-📝 Notlar
-Varsayılan bakiye: 1000 JP
-
-Bahis sonrası kullanıcı bakiyesi anında güncellenir
-
-Bahis süresi: maç başladıktan sonra 5 dakika ile sınırlıdır
-
-Contributing
-Bu projeye katkıda bulunmak istiyorsanız, lütfen GitHub reposunu fork'layın ve pull request gönderin. Yeni özellikler için commands/ veya events/ klasörlerini genişletin, veritabanı değişiklikleri için db/ altındaki controller'ları güncelleyin. Kod standartları için ESLint'i kullanın (eslint.config.js dosyasına bakın). Herhangi bir hata veya öneri için issues sekmesini açın. Riot API entegrasyonunda rate limit'lere dikkat edin ve .env dosyasındaki anahtarları paylaşmayın.
-
+Bu projeye katkıda bulunmak istiyorsanız, lütfen GitHub reposunu fork'layın ve pull request gönderin. Yeni özellikler için `commands/` veya `events/` klasörlerini genişletin, veritabanı değişiklikleri için `db/` altındaki controller'ları güncelleyin. Kod standartları için ESLint'i kullanın (`eslint.config.js` dosyasına bakın). Herhangi bir hata veya öneri için issues sekmesini açın. Riot API entegrasyonunda rate limit'lere dikkat edin ve `.env` dosyasındaki anahtarları paylaşmayın.

@@ -1,4 +1,5 @@
 # Japanese Garden LoL Betting Bot 🎮💰
+# Motivation
 
 Bu proje, **Discord.js v14** tabanlı bir **League of Legends bahis botudur**. Kullanıcılar, LoL maçları üzerinden bahis yapabilir, liderlik tablosunu görebilir ve oyun sonuçlarına göre ödüller kazanabilirler. Riot API üzerinden canlı maç verileri alınır ve SQLite ile kullanıcı/bahis verileri saklanır.
 
